@@ -1,4 +1,4 @@
-# depo
+# depot
 
 Manage a global directory of reference repositories on your system. Clone complex dependencies once, reference them everywhere.
 
@@ -11,47 +11,47 @@ When working with AI agents (or even just yourself), you often need access to re
 - Understand type definitions and API details
 - Debug by reading the real code
 
-Instead of downloading the same repositories into every project (bloating your disk), `depo` manages a single shared `~/.vendor` directory that you can reference from anywhere.
+Instead of downloading the same repositories into every project (bloating your disk), `depot` manages a single shared `~/.vendor` directory that you can reference from anywhere.
 
 ## Installation
 
 ```bash
-go install github.com/acoyfellow/depo@latest
+go install github.com/acoyfellow/depot@latest
 ```
 
-This installs to `~/go/bin/depo`. Verify it's in your PATH by running `depo list`.
+This installs to `~/go/bin/depot`. Verify it's in your PATH by running `depot list`.
 
 ## Usage
 
 ### Add a repository to track
 
 ```bash
-depo add effect https://github.com/Effect-TS/effect
-depo add svelte https://github.com/sveltejs/svelte
+depot add effect https://github.com/Effect-TS/effect
+depot add svelte https://github.com/sveltejs/svelte
 ```
 
 Repos are stored in `~/.vendor/` by default. You can customize the path:
 
 ```bash
-depo add alchemy https://github.com/sam-goodwin/alchemy --branch main
+depot add alchemy https://github.com/sam-goodwin/alchemy --branch main
 ```
 
 ### Clone or update all repos
 
 ```bash
-depo update
+depot update
 ```
 
 Or update just one:
 
 ```bash
-depo update effect
+depot update effect
 ```
 
 ### List your repositories
 
 ```bash
-depo list
+depot list
 ```
 
 Shows which repos are configured and cloned.
@@ -59,7 +59,7 @@ Shows which repos are configured and cloned.
 ### Remove a repo from tracking
 
 ```bash
-depo remove svelte
+depot remove svelte
 ```
 
 (The cloned directory remains; only the config entry is removed.)

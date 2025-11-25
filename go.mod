@@ -1,4 +1,4 @@
-module github.com/acoyfellow/depo
+module github.com/acoyfellow/depot
 
 go 1.23
 

@@ -231,7 +231,7 @@ func runGit(dir string, args ...string) error {
 
 func main() {
 	app := &cli.App{
-		Name:  "depo",
+		Name:  "depot",
 		Usage: "Manage reference repositories globally",
 		Commands: []*cli.Command{
 			{
