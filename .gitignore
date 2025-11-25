@@ -5,7 +5,7 @@
 *.so
 *.so.*
 *.dylib
-depo
+depot
 
 # Test binary, built with `go test -c`
 *.test
