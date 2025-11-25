@@ -64,7 +64,7 @@ func saveConfig(config *Config) error {
 
 func cmdAdd(c *cli.Context) error {
 	if c.NArg() < 2 {
-		return cli.Exit("Usage: depo add <name> <url> [--branch main] [--path ~/.vendor/<name>]", 1)
+		return cli.Exit("Usage: depot add <name> <url> [--branch main] [--path ~/.vendor/<name>]", 1)
 	}
 
 	name := c.Args().Get(0)
@@ -108,7 +108,7 @@ func cmdAdd(c *cli.Context) error {
 
 func cmdRemove(c *cli.Context) error {
 	if c.NArg() < 1 {
-		return cli.Exit("Usage: depo remove <name>", 1)
+		return cli.Exit("Usage: depot remove <name>", 1)
 	}
 
 	name := c.Args().Get(0)
