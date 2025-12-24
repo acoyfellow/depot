@@ -36,7 +36,7 @@ depot remove <name>        → Untrack a repo
 ```
 
 **Core patterns that transfer well:**
-- Config stored in `~/.vendor/config.json` → Could become `~/.depot/prompts.json`
+- Config stored in `~/.vendor/config.json` → Prompts could live alongside in `~/.vendor/prompts/` (maintaining existing directory) or migrate to a new `~/.depot/` root
 - Simple CLI with urfave/cli → Same pattern works for prompts
 - Name-based retrieval → `depot get simplify` to fetch and copy prompt
 - Local-first storage → Prompts stay on your machine
@@ -225,8 +225,9 @@ Keep the existing architecture, add prompt commands alongside repo commands.
 ```bash
 depot repo add effect https://...    # Old functionality
 depot prompt add simplify "..."       # New functionality
-depot add simplify "..."              # Default to prompts if no URL
 ```
+
+> **Note**: Avoid overloading `depot add` to auto-detect prompts vs repos. If a prompt name happens to look like a URL, behavior becomes unpredictable. Explicit subcommands (`repo`, `prompt`) are safer.
 
 ### Option 2: Separate Binary
 Create `depot-prompts` or rename entirely.
@@ -355,21 +356,23 @@ The user's notepad follows a pattern:
 
 ## Implementation Phases
 
-### Phase 1: MVP (2-3 days)
+> **Disclaimer**: Time estimates below are rough ballpark figures and may vary significantly based on complexity discovery during development, testing requirements across platforms, edge cases, and polish level desired.
+
+### Phase 1: MVP (2-3 days estimate)
 - `depot prompt add <name>` - Add prompt (from stdin, --file, or $EDITOR)
 - `depot prompt get <name>` - Copy to clipboard
 - `depot prompt list` - List all prompts
 - `depot prompt remove <name>` - Delete prompt
 - Simple JSON storage
 
-### Phase 2: Enhanced UX (1 week)
+### Phase 2: Enhanced UX (1 week estimate)
 - Fuzzy search
 - Tags and filtering
 - `depot prompt edit <name>`
 - Interactive picker with bubbletea
 - Shell completions
 
-### Phase 3: Power Features (2 weeks)
+### Phase 3: Power Features (2 weeks estimate)
 - Markdown frontmatter format
 - Import/export
 - Usage statistics
@@ -400,7 +403,7 @@ The user's notepad follows a pattern:
 **Start simple, validate fast.**
 
 1. Add `depot prompt add/get/list/remove` commands
-2. Store prompts in `~/.depot/prompts.json`
+2. Store prompts in `~/.vendor/prompts.json` (alongside existing config)
 3. Copy to clipboard on `get`
 4. Ship and use it yourself
 
@@ -419,7 +422,7 @@ This evolution **directly extends** that mission:
 - **Prompts**: Give humans optimized ways to instruct AI agents
 
 Both features:
-- Live in `~/.depot` (or `~/.vendor`)
+- Live in `~/.vendor` (existing directory, maintain compatibility)
 - CLI-first, developer-focused
 - Solve real daily friction
 - Stay local and fast
